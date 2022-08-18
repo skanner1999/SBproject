@@ -17,6 +17,8 @@ public class SBprojectApplication {
 		ButtonOne b1 = new ButtonOne();
 		ButtonTwo b2 = new ButtonTwo();
 
+		Database db = new Database();
+
 		JFrame frame = new JFrame("First GUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400,500);
@@ -38,6 +40,8 @@ public class SBprojectApplication {
 		
 		frame.getContentPane().add(BorderLayout.WEST,button1);
 		frame.getContentPane().add(BorderLayout.EAST,button2);
+
+		db.Test();
 
 		SpringApplication.run(SBprojectApplication.class, args);
 	}
