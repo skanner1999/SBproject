@@ -9,11 +9,12 @@ import org.springframework.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 @SpringBootApplication
 public class SBprojectApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		ButtonOne b1 = new ButtonOne();
 		ButtonTwo b2 = new ButtonTwo();
 
@@ -41,7 +42,7 @@ public class SBprojectApplication {
 		frame.getContentPane().add(BorderLayout.WEST,button1);
 		frame.getContentPane().add(BorderLayout.EAST,button2);
 
-		db.Test();
+		db.getName();
 
 		SpringApplication.run(SBprojectApplication.class, args);
 	}
