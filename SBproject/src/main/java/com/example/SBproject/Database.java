@@ -39,4 +39,27 @@ public class Database {
         }
     }
 
+    public void Insert(String x, String y, String z) throws SQLException {
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        //Getting the connection
+        String mysqlUrl = "jdbc:mysql://localhost/";
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        String InsertQ = "INSERT INTO `Employee.employees` (username,first_name,last_name) VALUES (?,?,?);";
+        PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
+        preparedStmt.setString(1, x);
+        preparedStmt.setString(2, y);
+        preparedStmt.setString(3, z);
+        preparedStmt.executeUpdate();
+    }
+
+    public void testInsert() throws SQLException {
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        //Getting the connection
+        String mysqlUrl = "jdbc:mysql://localhost/";
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        String query3 = "INSERT INTO Employee.employees (username, first_name, last_name) VALUES ('BCoss', 'Brandon','Cossin');";
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate(query3);
+    }
+
 }

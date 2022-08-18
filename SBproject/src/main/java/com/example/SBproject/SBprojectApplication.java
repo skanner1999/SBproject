@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.sql.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SBprojectApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		ButtonOne b1 = new ButtonOne();
 		ButtonTwo b2 = new ButtonTwo();
 
@@ -52,7 +54,13 @@ public class SBprojectApplication {
 				String userValue = field.getText();
 				String firstnameValue = field2.getText();
 				String lastnameValue = field3.getText();
-				
+				try {
+					db.Insert(userValue, firstnameValue, lastnameValue);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.out.println("Failed");
+				}
 			}
 		});
 
@@ -80,6 +88,8 @@ public class SBprojectApplication {
         frame.pack();
         frame.setVisible(true);
 
+		db.getName();
+		//db.testInsert();
 		SpringApplication.run(SBprojectApplication.class, args);
 	}
 
