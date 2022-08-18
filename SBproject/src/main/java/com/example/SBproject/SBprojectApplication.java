@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,9 +45,14 @@ public class SBprojectApplication {
 		panel.add(field3);
 		//Add button
 		JButton button1 = new JButton("Submit");
+
+		//event gets the values of the input fields as string when clicked submit
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				b1.getInfo();
+				String userValue = field.getText();
+				String firstnameValue = field2.getText();
+				String lastnameValue = field3.getText();
+				
 			}
 		});
 
@@ -64,6 +70,7 @@ public class SBprojectApplication {
 		JFrame frame = new JFrame("First GUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400,500);
+		frame.setMinimumSize(new Dimension(500, 300));
 		frame.setVisible(true);
 		//Set up the content pane.
         panel.setOpaque(true);  //content panes must be opaque
