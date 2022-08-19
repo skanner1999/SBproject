@@ -9,8 +9,8 @@ public class Database {
     public void CreateDB() throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+        Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
         System.out.println("Connection established......");
         //Creating the Statement
         Statement stmt = con.createStatement();
@@ -32,8 +32,8 @@ public class Database {
             String[] user = new String[3];
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             //Getting the connection
-            String mysqlUrl = "jdbc:mysql://localhost/";
-            Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+            String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+            Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
             String query4 = "SELECT * FROM Employee.employees;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query4);
@@ -49,8 +49,8 @@ public class Database {
     public void getName() throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+        Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
         String query4 = "SELECT * FROM Employee.employees;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query4);
@@ -62,8 +62,8 @@ public class Database {
     public void Insert(String x, String y, String z) throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+        Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
         String InsertQ = "INSERT INTO Employee.employees (username,first_name,last_name) VALUES (?,?,?);";
         PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
         preparedStmt.setString(1, x);
@@ -75,8 +75,8 @@ public class Database {
     public void testInsert() throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+        Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
         String query3 = "INSERT INTO Employee.employees (username, first_name, last_name) VALUES ('BCoss', 'Brandon','Cossin');";
         Statement stmt = con.createStatement();
         stmt.executeUpdate(query3);
@@ -85,12 +85,12 @@ public class Database {
     public void DeleteEmployee(String x) throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
-        String InsertQ = "SET SQL_SAFE_UPDATES = 0;" + 
+        String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+        Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
+        String DeleteQ = "SET SQL_SAFE_UPDATES = 0;" + 
                             "DELETE FROM Employee.employees WHERE username = ?;" + 
                             "SET SQL_SAFE_UPDATES = 1;";
-        PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
+        PreparedStatement preparedStmt = con.prepareStatement(DeleteQ);
         preparedStmt.setString(1, x);
         preparedStmt.executeUpdate();
     }
