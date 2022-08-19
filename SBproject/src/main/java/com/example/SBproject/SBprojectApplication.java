@@ -27,6 +27,7 @@ public class SBprojectApplication {
 		ButtonTwo b2 = new ButtonTwo();
 
 		Database db = new Database();	
+		db.CreateDB();
 		//Username
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());
@@ -74,9 +75,7 @@ public class SBprojectApplication {
 		});
 		
 		panel.add(button1);
-		//frame.getContentPane().add(BorderLayout.EAST,button2);
-
-		//db.Test();
+		
 		JFrame frame = new JFrame("First GUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400,500);

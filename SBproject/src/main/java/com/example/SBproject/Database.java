@@ -2,13 +2,15 @@ package com.example.SBproject;
 
 
 import java.sql.*;
+import java.util.*;
+
 public class Database {
 
     public void CreateDB() throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
         System.out.println("Connection established......");
         //Creating the Statement
         Statement stmt = con.createStatement();
@@ -25,12 +27,30 @@ public class Database {
         //stmt.execute(query3);
         //System.out.println(rs);
         }
-
+    public List<String[]> getUsers() throws SQLException {
+            List<String[]> users = new ArrayList<>();
+            String[] user = new String[3];
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            //Getting the connection
+            String mysqlUrl = "jdbc:mysql://localhost/";
+            Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+            String query4 = "SELECT * FROM Employee.employees;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query4);
+            while (rs.next()) {
+                System.out.println(rs.getString("first_name"));
+                user[0] = rs.getString("username");
+                user[1] = rs.getString("first_name");
+                user[2] = rs.getString("first_name");
+                users.add(user);
+            }
+            return users;
+        }
     public void getName() throws SQLException {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
         String query4 = "SELECT * FROM Employee.employees;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query4);
@@ -43,7 +63,7 @@ public class Database {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
         String InsertQ = "INSERT INTO Employee.employees (username,first_name,last_name) VALUES (?,?,?);";
         PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
         preparedStmt.setString(1, x);
@@ -56,7 +76,7 @@ public class Database {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
         String query3 = "INSERT INTO Employee.employees (username, first_name, last_name) VALUES ('BCoss', 'Brandon','Cossin');";
         Statement stmt = con.createStatement();
         stmt.executeUpdate(query3);
