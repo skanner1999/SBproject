@@ -44,7 +44,7 @@ public class Database {
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
         Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
-        String InsertQ = "INSERT INTO `Employee.employees` (username,first_name,last_name) VALUES (?,?,?);";
+        String InsertQ = "INSERT INTO Employee.employees (username,first_name,last_name) VALUES (?,?,?);";
         PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
         preparedStmt.setString(1, x);
         preparedStmt.setString(2, y);

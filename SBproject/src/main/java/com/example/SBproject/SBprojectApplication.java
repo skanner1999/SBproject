@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import java.sql.*;
 
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SBprojectApplication {
 
 	public static void main(String[] args) throws SQLException {
+
 		ButtonOne b1 = new ButtonOne();
 		ButtonTwo b2 = new ButtonTwo();
 
@@ -63,7 +65,7 @@ public class SBprojectApplication {
 				}
 			}
 		});
-
+		
 		JButton button2 = new JButton("Button2");
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
