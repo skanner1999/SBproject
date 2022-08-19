@@ -82,4 +82,17 @@ public class Database {
         stmt.executeUpdate(query3);
     }
 
+    public void DeleteEmployee(String x) throws SQLException {
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        //Getting the connection
+        String mysqlUrl = "jdbc:mysql://localhost/";
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
+        String InsertQ = "SET SQL_SAFE_UPDATES = 0;" + 
+                            "DELETE FROM Employee.employees WHERE username = ?;" + 
+                            "SET SQL_SAFE_UPDATES = 1;";
+        PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
+        preparedStmt.setString(1, x);
+        preparedStmt.executeUpdate();
+    }
+
 }
