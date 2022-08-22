@@ -90,7 +90,7 @@ public class SBprojectApplication {
         JPanel borderPnl = new JPanel(new BorderLayout());
         borderPnl.add(border1AddPnl, BorderLayout.NORTH);
         borderPnl.add(border1ListPnl, BorderLayout.CENTER);
-		//Edit User Panels
+        //Edit User Panels
         JPanel Editpanel = new JPanel();
         Editpanel.setLayout(new FlowLayout());
         JLabel userEditlabel = new JLabel("Employee username to edit");
@@ -98,6 +98,11 @@ public class SBprojectApplication {
         JTextField fieldEdit = new JTextField(10);
         userlabel.setLabelFor(fieldEdit);
         Editpanel.add(fieldEdit);
+        JLabel userEditlabel2 = new JLabel("New Employee Username");
+        Editpanel.add(userEditlabel2);
+        JTextField fieldEdit2 = new JTextField(10);
+        userlabel.setLabelFor(fieldEdit2);
+        Editpanel.add(fieldEdit2);
         JPanel border1EditPnl = new JPanel(new BorderLayout());
         JPanel titleEditPanel = new JPanel();
         JLabel titleEdit = new JLabel("Edit an Employee");
@@ -167,8 +172,15 @@ public class SBprojectApplication {
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String userValue = fieldEdit.getText();
-                
-                
+                String userValue2 = fieldEdit2.getText();
+                try {
+                    db.ChangeUsername(userValue2, userValue);
+
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                    System.out.println("Failed");
+                }
             }
         });
         // Button 3 = Drop button
