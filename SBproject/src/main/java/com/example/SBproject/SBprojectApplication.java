@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.SwingUtilities;
 
 import java.sql.*;
 import java.util.*;
@@ -90,7 +91,7 @@ public class SBprojectApplication {
         JPanel borderPnl = new JPanel(new BorderLayout());
         borderPnl.add(border1AddPnl, BorderLayout.NORTH);
         borderPnl.add(border1ListPnl, BorderLayout.CENTER);
-        //Edit User Panels
+		//Edit User Panels
         JPanel Editpanel = new JPanel();
         Editpanel.setLayout(new FlowLayout());
         JLabel userEditlabel = new JLabel("Employee username to edit");
@@ -151,6 +152,7 @@ public class SBprojectApplication {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+        
         // Button Section
         //event gets the values of the input fields as string when clicked submit
         // Button 1 = Add Employee Button
@@ -161,11 +163,41 @@ public class SBprojectApplication {
                 String lastnameValue = field3.getText();
                 try {
                     db.Insert(userValue, firstnameValue, lastnameValue);
+                    JPanel gb = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weighty = 1.0;
+
+        //Displays all users
+        List<String[]> users = db.getUsers();
+        for(int i = 0; i < users.size(); i++){
+            String[] user = (users.get(i));
+            String userString = "Username: " + user[0] + " Full Name: " + user[1] + " " +user[2];
+            JLabel label = new JLabel(userString);
+            System.out.println(userString);            
+            //userPanel.add(label);
+            gb.add(label, gbc);
+        }
+        JPanel border1ListPnl = new JPanel(new BorderLayout());
+        border1ListPnl.add(titleListPanel, BorderLayout.NORTH);
+        border1ListPnl.add(gb, BorderLayout.CENTER);
+        //User List Layout
+        JPanel borderPnl = new JPanel(new BorderLayout());
+        borderPnl.add(border1AddPnl, BorderLayout.NORTH);
+        borderPnl.add(border1ListPnl, BorderLayout.CENTER);
+        borderPnl.add(border1DropEditPnl, BorderLayout.SOUTH);
+
+                    frame.setContentPane(borderPnl);
+                    //Display the window.
+        frame.pack();
+        frame.setVisible(true);
                 } catch (SQLException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                     System.out.println("Failed");
                 }
+                
             }
         });
 		// Button 2 = Edit button
@@ -175,6 +207,35 @@ public class SBprojectApplication {
                 String userValue2 = fieldEdit2.getText();
                 try {
                     db.ChangeUsername(userValue2, userValue);
+                    JPanel gb = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weighty = 1.0;
+
+        //Displays all users
+        List<String[]> users = db.getUsers();
+        for(int i = 0; i < users.size(); i++){
+            String[] user = (users.get(i));
+            String userString = "Username: " + user[0] + " Full Name: " + user[1] + " " +user[2];
+            JLabel label = new JLabel(userString);
+            System.out.println(userString);            
+            //userPanel.add(label);
+            gb.add(label, gbc);
+        }
+        JPanel border1ListPnl = new JPanel(new BorderLayout());
+        border1ListPnl.add(titleListPanel, BorderLayout.NORTH);
+        border1ListPnl.add(gb, BorderLayout.CENTER);
+        //User List Layout
+        JPanel borderPnl = new JPanel(new BorderLayout());
+        borderPnl.add(border1AddPnl, BorderLayout.NORTH);
+        borderPnl.add(border1ListPnl, BorderLayout.CENTER);
+        borderPnl.add(border1DropEditPnl, BorderLayout.SOUTH);
+
+                    frame.setContentPane(borderPnl);
+                    //Display the window.
+        frame.pack();
+        frame.setVisible(true);
 
                 } catch (SQLException e1) {
                     // TODO Auto-generated catch block
@@ -189,6 +250,35 @@ public class SBprojectApplication {
                 String userValue = fieldDrop.getText();
 				try {
 					db.DeleteEmployee(userValue);
+                    JPanel gb = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weighty = 1.0;
+
+        //Displays all users
+        List<String[]> users = db.getUsers();
+        for(int i = 0; i < users.size(); i++){
+            String[] user = (users.get(i));
+            String userString = "Username: " + user[0] + " Full Name: " + user[1] + " " +user[2];
+            JLabel label = new JLabel(userString);
+            System.out.println(userString);            
+            //userPanel.add(label);
+            gb.add(label, gbc);
+        }
+        JPanel border1ListPnl = new JPanel(new BorderLayout());
+        border1ListPnl.add(titleListPanel, BorderLayout.NORTH);
+        border1ListPnl.add(gb, BorderLayout.CENTER);
+        //User List Layout
+        JPanel borderPnl = new JPanel(new BorderLayout());
+        borderPnl.add(border1AddPnl, BorderLayout.NORTH);
+        borderPnl.add(border1ListPnl, BorderLayout.CENTER);
+        borderPnl.add(border1DropEditPnl, BorderLayout.SOUTH);
+
+                    frame.setContentPane(borderPnl);
+                    //Display the window.
+        frame.pack();
+        frame.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -197,7 +287,8 @@ public class SBprojectApplication {
                 
             }
         });
-        //db.testInsert();
+        
         SpringApplication.run(SBprojectApplication.class, args);
     }
+   
 }
