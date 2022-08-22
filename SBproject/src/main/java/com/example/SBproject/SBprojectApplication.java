@@ -60,13 +60,17 @@ public class SBprojectApplication {
         panel.add(button1);
 		JPanel border1AddPnl = new JPanel(new BorderLayout());
         JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel("Add Employee");        
+        JLabel title = new JLabel("Add Employee");     
+        title.setFont(new Font("Verdana", Font.PLAIN, 15));    
+
         titlePanel.add(title);
         border1AddPnl.add(panelHeaderLabel, BorderLayout.NORTH);
         border1AddPnl.add(titlePanel, BorderLayout.CENTER);
         border1AddPnl.add(panel, BorderLayout.SOUTH);
         JPanel titleListPanel = new JPanel();
         JLabel userListlabel = new JLabel("Employee List");
+        userListlabel.setFont(new Font("Verdana", Font.PLAIN, 15));    
+
         titleListPanel.add(userListlabel);
         JPanel gb = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -99,7 +103,7 @@ public class SBprojectApplication {
         JTextField fieldEdit = new JTextField(10);
         userlabel.setLabelFor(fieldEdit);
         Editpanel.add(fieldEdit);
-        JLabel userEditlabel2 = new JLabel("New Employee Username");
+        JLabel userEditlabel2 = new JLabel("New Username");
         Editpanel.add(userEditlabel2);
         JTextField fieldEdit2 = new JTextField(10);
         userlabel.setLabelFor(fieldEdit2);
@@ -107,7 +111,8 @@ public class SBprojectApplication {
         JPanel border1EditPnl = new JPanel(new BorderLayout());
         JPanel titleEditPanel = new JPanel();
         JLabel titleEdit = new JLabel("Edit an Employee");
-        
+        titleEdit.setFont(new Font("Verdana", Font.PLAIN, 15));    
+
         //Add button
         JButton button2 = new JButton("Submit");
         Editpanel.add(button2);        
@@ -125,6 +130,8 @@ public class SBprojectApplication {
         panel.add(fieldDrop);
         JPanel titleDropPanel = new JPanel();
         JLabel titleDrop = new JLabel("Delete an Employee");
+        titleDrop.setFont(new Font("Verdana", Font.PLAIN, 15));    
+
         //Add button
         JButton button3 = new JButton("Submit");
         panel.add(button3);        
