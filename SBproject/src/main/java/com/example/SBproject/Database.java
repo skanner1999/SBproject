@@ -10,7 +10,7 @@ public class Database {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "cookieA1!");
         System.out.println("Connection established......");
         //Creating the Statement
         Statement stmt = con.createStatement();
@@ -33,15 +33,17 @@ public class Database {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             //Getting the connection
             String mysqlUrl = "jdbc:mysql://localhost/";
-            Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+            Connection con = DriverManager.getConnection(mysqlUrl, "root", "cookieA1!");
+            //Connection con = DriverManager.getConnection(mysqlUrl, "root", "password!");
             String query4 = "SELECT * FROM Employee.employees;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query4);
             while (rs.next()) {
+                user = new String[3];
                 System.out.println(rs.getString("first_name"));
                 user[0] = rs.getString("username");
                 user[1] = rs.getString("first_name");
-                user[2] = rs.getString("first_name");
+                user[2] = rs.getString("last_name");
                 users.add(user);
             }
             return users;
@@ -50,7 +52,8 @@ public class Database {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "cookieA1!");
+        //Connection con = DriverManager.getConnection(mysqlUrl, "root", "password!");
         String query4 = "SELECT * FROM Employee.employees;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query4);
@@ -63,7 +66,8 @@ public class Database {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "cookieA1!");
+        //Connection con = DriverManager.getConnection(mysqlUrl, "root", "password!");
         String InsertQ = "INSERT INTO Employee.employees (username,first_name,last_name) VALUES (?,?,?);";
         PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
         preparedStmt.setString(1, x);
@@ -76,23 +80,13 @@ public class Database {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        Connection con = DriverManager.getConnection(mysqlUrl, "root", "cookieA1!");
+        //Connection con = DriverManager.getConnection(mysqlUrl, "root", "password!");
         String query3 = "INSERT INTO Employee.employees (username, first_name, last_name) VALUES ('BCoss', 'Brandon','Cossin');";
         Statement stmt = con.createStatement();
         stmt.executeUpdate(query3);
     }
 
-    public void DeleteEmployee(String x) throws SQLException {
-        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-        //Getting the connection
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
-        String InsertQ = "SET SQL_SAFE_UPDATES = 0;" + 
-                            "DELETE FROM Employee.employees WHERE username = ?;" + 
-                            "SET SQL_SAFE_UPDATES = 1;";
-        PreparedStatement preparedStmt = con.prepareStatement(InsertQ);
-        preparedStmt.setString(1, x);
-        preparedStmt.executeUpdate();
-    }
+   
 
 }
