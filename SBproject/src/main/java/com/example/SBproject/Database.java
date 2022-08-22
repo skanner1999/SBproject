@@ -38,6 +38,7 @@ public class Database {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query4);
             while (rs.next()) {
+                user = new String[3];
                 System.out.println(rs.getString("first_name"));
                 user[0] = rs.getString("username");
                 user[1] = rs.getString("first_name");
@@ -87,11 +88,21 @@ public class Database {
         //Getting the connection
         String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
         Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
-        String DeleteQ = "SET SQL_SAFE_UPDATES = 0;" + 
-                            "DELETE FROM Employee.employees WHERE username = ?;" + 
-                            "SET SQL_SAFE_UPDATES = 1;";
+        String DeleteQ = "DELETE FROM Employee.employees WHERE username = ?;";
         PreparedStatement preparedStmt = con.prepareStatement(DeleteQ);
         preparedStmt.setString(1, x);
+        preparedStmt.executeUpdate();
+    }
+
+    public void ChangeUsername(String x, String y) throws SQLException {
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        //Getting the connection
+        String mysqlUrl = "jdbc:mysql://bsck.mysql.database.azure.com:3306?useSSL=true";
+        Connection con = DriverManager.getConnection(mysqlUrl, "skanner", "Password12345");
+        String DeleteQ = "UPDATE Employee.employees SET username = ? WHERE username = ?;";
+        PreparedStatement preparedStmt = con.prepareStatement(DeleteQ);
+        preparedStmt.setString(1, x);
+        preparedStmt.setString(2, y);
         preparedStmt.executeUpdate();
     }
 
